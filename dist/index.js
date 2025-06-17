@@ -13297,13 +13297,21 @@ function getWorkspaceLocation(params, targetWorkspace) {
                         };
                         var url = resourceManagerEndpointUrl + "subscriptions/" + subscriptionId + "/" +
                             ("resourceGroups/" + resourceGroup + "/providers/Microsoft.Synapse/workspaces/") +
-                            (targetWorkspace + "?api-version=2019-06-01-preview");
+                            (targetWorkspace + "?api-version=2021-06-01");
+			logger_1.SystemLogger.info("resourceManagerEndpointUrl: " + resourceManagerEndpointUrl);
+			logger_1.SystemLogger.info("subscriptionId: " + subscriptionId);
+			logger_1.SystemLogger.info("resourceGroup: " + resourceGroup);
+			logger_1.SystemLogger.info("headers: " + headers);
+			logger_1.SystemLogger.info("url: " + url);
                         client.get(url, headers).then(function (res) { return __awaiter(_this, void 0, void 0, function () {
                             var resStatus, body;
                             return __generator(this, function (_a) {
                                 switch (_a.label) {
                                     case 0:
                                         resStatus = res.message.statusCode;
+					logger_1.SystemLogger.info("res: " + res);
+					logger_1.SystemLogger.info("resStatus: " + resStatus);
+					logger_1.SystemLogger.info("body: " + body);
                                         if (resStatus != 200 && resStatus != 201 && resStatus != 202) {
                                             logger_1.SystemLogger.info("Unable to fetch location of workspace, status: " + resStatus + "; status message: " + res.message.statusMessage);
                                             return [2 /*return*/, reject(deploy_utils_1.DeployStatus.failed)];
